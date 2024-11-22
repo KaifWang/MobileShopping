@@ -2,26 +2,9 @@ import { Text, SafeAreaView, StyleSheet, TextInput,
   ActivityIndicator, FlatList, View, Image } from "react-native";
 import { useState, useEffect } from "react";
 
-const API_ENDPOINT = "https://retoolapi.dev/f0ee0v/items"
+import {Item, ListItem} from "../components/ListItem"
 
-type Item ={
-  id: number,
-  oos: string,
-  qoh: string,
-  name: string,
-  size: string,
-  upc1: string,
-  upc2: string,
-  image: string,
-  price: string,
-  metadata: string,
-  supplier: string,
-  unit_size: string,
-  created_at: string,
-  nacs_category: string,
-  discounted_price: string,
-  nacs_subcategory: string
-}
+const API_ENDPOINT = "https://retoolapi.dev/f0ee0v/items"
 
 export default function App() {
   const [data, setData] = useState<Item[]>([]);
@@ -60,34 +43,25 @@ export default function App() {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Text style={styles.textHeader}>Order Book</Text>
-      <TextInput 
-        placeholder="Search"
-        clearButtonMode="always"
-        style={styles.searchBox}
-        autoCapitalize="none"
-        onSubmitEditing={(event) => handleSearch(event.nativeEvent.text)}
-        />
-      <View style={{flex: 1, padding: 24}}>
+      <View style={styles.topView}>
+        <Text style={styles.textHeader}>Order Book</Text>
+        <TextInput 
+          placeholder="Search items"
+          clearButtonMode="always"
+          style={styles.searchBox}
+          onChangeText={(event) => handleSearch(event)}
+          />
+      </View>
+      <View style={styles.itemView}>
         {isLoading ? (
           <ActivityIndicator />
         ) : (
           <FlatList
             data={searchData}
+            numColumns={2}
             keyExtractor={({id}) => String(id)}
             renderItem={({item}) => (
-              <View>
-                <Image source={{uri: item.image}} style={styles.image}></Image>
-                <Text style={styles.textSupplier}>
-                  {item.supplier}
-                </Text>
-                <Text style={styles.textName}>
-                  {item.name}
-                </Text>
-                <Text style={styles.textPrice}>
-                  {item.price}
-                </Text>
-              </View>
+              <ListItem {...item}/>
             )}
           />
         )}
@@ -99,36 +73,30 @@ export default function App() {
 const styles = StyleSheet.create({
   container:{
     flex: 1,
-    marginHorizontal:20,
+
+  },
+  topView:{
+    flex: 1,
+    backgroundColor:"#00416A",
   },
   textHeader:{
+    paddingTop: 20,
+    paddingLeft: 10,
     fontSize: 20,
     fontWeight: "bold",
+    paddingBottom: 10,
+    color: "white"
   },
   searchBox:{
     paddingHorizontal: 20,
     paddingVertical: 10,
     borderColor: "#ccc",
     borderWidth: 1,
-    borderRadius: 8
+    borderRadius: 20,
+    backgroundColor: "white",
   },
-  image:{
-    width: 100,
-    height: 100,
+  itemView:{
+    flex: 6, 
+    paddingHorizontal: 30,
   },
-  textSupplier:{
-    color: 'blue',
-    fontSize: 15,
-  },
-  textName: {
-    fontSize: 16,
-    fontWeight: "800",
-  },
-  textPrice:{
-    color: "green",
-    fontSize: 15,
-    fontWeight: "600",
-  }
-
-
 })
