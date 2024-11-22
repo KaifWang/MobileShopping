@@ -1,8 +1,8 @@
 import { Text, SafeAreaView, StyleSheet, TextInput, 
-  ActivityIndicator, FlatList, View, Image } from "react-native";
+  ActivityIndicator, FlatList, View } from "react-native";
 import { useState, useEffect } from "react";
 
-import {Item, ListItem} from "../components/ListItem"
+import {Item, ListItem} from "../../components/ListItem"
 
 const API_ENDPOINT = "https://retoolapi.dev/f0ee0v/items"
 
