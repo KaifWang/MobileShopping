@@ -3,42 +3,28 @@ import { Text, SafeAreaView, StyleSheet, TextInput,
     Button} from "react-native";
 
 
-export function ListItem(item : Item) {
+export function CartItemComp(item : CartItem) {
     return(
         <View style={styles.container}>
-        <Image source={{uri: item.image}} style={styles.image}></Image>
-        <Text style={styles.textSupplier}>
-          {item.supplier}
+        <Text style={styles.textId}>
+          {item.id}
         </Text>
         <Text style={styles.textName}>
           {item.name}
         </Text>
-        <Text style={styles.textPrice}>
-          {item.price}
+        <Text style={styles.textCount}>
+          {item.count}
         </Text>
       </View>
     );
 }
 
 
-export interface Item {
+export interface CartItem {
     id: number,
-    oos: string,
-    qoh: string,
+    count: number,
     name: string,
-    size: string,
-    upc1: string,
-    upc2: string,
-    image: string,
-    price: string,
-    metadata: string,
-    supplier: string,
-    unit_size: string,
-    created_at: string,
-    nacs_category: string,
-    discounted_price: string,
-    nacs_subcategory: string
-  }
+}
 
 
 const styles = StyleSheet.create({
@@ -52,7 +38,7 @@ const styles = StyleSheet.create({
       paddingHorizontal:20,
       width: 200,
     },
-    textSupplier:{
+    textId:{
       color: 'blue',
       fontSize: 13,
     },
@@ -60,7 +46,7 @@ const styles = StyleSheet.create({
       fontSize: 13,
       fontWeight: "800",
     },
-    textPrice:{
+    textCount:{
       color: "green",
       fontSize: 13,
       fontWeight: "600",
