@@ -1,9 +1,5 @@
-import { addOneToCart, CartItemDicionary, CartState, removeOneFromCart } from "@/stores/cartStore";
-import { Text, SafeAreaView, StyleSheet, TextInput, 
-    ActivityIndicator, FlatList, View, Image, 
-    Button,
-    TouchableHighlight,
-    TouchableOpacity} from "react-native";
+import { addOneToCart, CartState, removeOneFromCart } from "@/stores/cartStore";
+import { Text, StyleSheet, View, Image, TouchableOpacity} from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { CartItem } from "./CartItem";
 import { useState } from "react";
