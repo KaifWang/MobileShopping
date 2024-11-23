@@ -73,7 +73,6 @@ export default function App() {
 const styles = StyleSheet.create({
   container:{
     flex: 1,
-
   },
   topView:{
     flex: 1,
@@ -97,6 +96,6 @@ const styles = StyleSheet.create({
   },
   itemView:{
     flex: 6, 
-    paddingHorizontal: 30,
+    alignItems:"center",
   },
 })

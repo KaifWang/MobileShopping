@@ -10,10 +10,7 @@ export interface CartItemDicionary {
 }
 
 const initialState : CartState = {
-    cartItems: {
-        1 : {id: 1, count: 1, name: "Coke"},
-        2 : {id: 2, count: 3, name: "Beer"}
-    }
+    cartItems: {}
 }
 
 const cartSlice = createSlice({
@@ -21,7 +18,7 @@ const cartSlice = createSlice({
     initialState,
     reducers: {
         addOneToCart:(state, action) => {
-            const idToAdd = action.payload;
+            const idToAdd = action.payload.id;
             const cartItem = state.cartItems[idToAdd]
             if(cartItem){
                 cartItem.count += 1
@@ -30,7 +27,7 @@ const cartSlice = createSlice({
             }
         },
         removeOneFromCart: (state, action) => {
-            const idToRemove = action.payload;
+            const idToRemove = action.payload.id;
             const cartItem = state.cartItems[idToRemove]
             if(cartItem){
                 cartItem.count -= 1;
